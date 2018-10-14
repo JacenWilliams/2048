@@ -3,7 +3,7 @@ let rows = 4;
 let cols = 4;
 let w;
 let score = 0;
-let resetButton;
+let scoreDisp = 0;
 
 function setup() {
   createCanvas(610, 700);
@@ -12,20 +12,16 @@ function setup() {
   for (let i = 0; i < cols; i++) {
     grid[i] = [];
   }
-
-  resetButton = createButton("Reset");
-  resetButton.position(width - 75, height - 55);
-  resetButton.mousePressed(reset);
-
+  textFont('Clear Sans');
   addCell();
   addCell();
 
 }
 
 function draw() {
-  background(205);
+  background(249,249,238);
   fill(187, 173, 158);
-  rect(0, 0, 610, 610);
+  rect(0, 0, 610, 610, 5);
   let stopped = true;
 
   for (let i = 0; i < cols; i++) {
@@ -58,6 +54,27 @@ function draw() {
       }
     }
   }
+  if(mouseX > width - 75 && mouseX < width - 10
+    && mouseY > height - 65  && mouseY < height - 20 ) {
+    fill(143,123,100, 100);
+    document.body.style.cursor = "pointer";
+  } else {
+    fill(143,123,100);
+    document.body.style.cursor = "default";
+  }
+  noStroke();
+  rect(width - 75, height - 65, 70, 40, 5);
+  textSize(w/8);
+  textAlign(CENTER, CENTER);
+  fill(249,246,241);
+  text("RESET", width-73, height-65, 70, 40);
+
+  if(scoreDisp != score) {
+    scoreDisp++;
+  }
+  textSize(w/4);
+  fill(119,110,100);
+  text("Score: " + scoreDisp, 100, height - 50);
 }
 
 function addCell() {
@@ -160,7 +177,7 @@ function moveUp() {
             moved = true;
           }
         }
-      }
+      }score
     }
   }
 
@@ -193,6 +210,14 @@ function moveDown() {
   }
 
   return moved;
+}
+
+function mouseClicked() {
+  if(mouseX > width - 75 && mouseX < width - 10
+    && mouseY > height - 65  && mouseY < height - 20 ) {
+    console.log("reset");
+    reset();
+  }
 }
 
 function keyPressed() {

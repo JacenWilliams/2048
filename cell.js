@@ -47,13 +47,14 @@ class cell {
         fill(255);
         noStroke();
         textAlign(CENTER, CENTER);
-        textSize(60);
+        textSize(w/2);
         text(this.value, ((this.x * w) + w / 2 + 5), ((this.y * w) + w / 2 + 5));
       }
   }
 
   merge(other) {
     this.value += other.value;
+    score += this.value;
     this.merged = true;
   }
 }
