@@ -215,7 +215,6 @@ function moveDown() {
 function mouseClicked() {
   if(mouseX > width - 75 && mouseX < width - 10
     && mouseY > height - 65  && mouseY < height - 20 ) {
-    console.log("reset");
     reset();
   }
 }
@@ -247,4 +246,5 @@ function reset() {
   addCell();
   addCell();
   score = 0;
+  scoreDisp = 0;
 }
